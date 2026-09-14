@@ -1,0 +1,155 @@
+/* NewChapterBox — shared styles
+   Each page sets data-theme="reset" | "boss-mode" | "grow-and-glow" on <body>.
+   Swap the CSS custom properties below to retune any palette — nothing else needs to change. */
+
+:root {
+  --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ---------- Theme: Reset Box — calm, breathable, a quiet exhale ---------- */
+body[data-theme="reset"] {
+  --bg: #F4F1EA;
+  --bg-soft: #EAE4D8;
+  --ink: #2E332D;
+  --ink-soft: #6B7266;
+  --accent: #7C9A82;
+  --accent-strong: #5C7A63;
+  --ring: rgba(124, 154, 130, 0.25);
+}
+
+/* ---------- Theme: Boss Mode Box — bold, confident, lights-on ---------- */
+body[data-theme="boss-mode"] {
+  --bg: #15151A;
+  --bg-soft: #1E1E26;
+  --ink: #F5F3EE;
+  --ink-soft: #A9A6B0;
+  --accent: #D8AE55;
+  --accent-strong: #EFC873;
+  --ring: rgba(216, 174, 85, 0.28);
+}
+
+/* ---------- Theme: Grow & Glow Box — warm, blooming, golden-hour ---------- */
+body[data-theme="grow-and-glow"] {
+  --bg: #FBF2E7;
+  --bg-soft: #F5E4CF;
+  --ink: #3B2C22;
+  --ink-soft: #8A6F5C;
+  --accent: #D9814F;
+  --accent-strong: #C06A3A;
+  --ring: rgba(217, 129, 79, 0.25);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: background 0.4s ease;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.card .eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.card h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 16px;
+  line-height: 1.25;
+}
+
+.card p.message {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 40px;
+}
+
+/* --- Play button --- */
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.play-button {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 var(--ring);
+  transition: transform 0.15s ease, box-shadow 0.6s ease, background 0.3s ease;
+}
+
+.play-button:hover { background: var(--accent-strong); }
+.play-button:active { transform: scale(0.96); }
+
+.play-button.is-playing {
+  box-shadow: 0 0 0 14px var(--ring);
+}
+
+.play-button svg { width: 28px; height: 28px; }
+.play-button .icon-pause { display: none; }
+.play-button.is-playing .icon-play { display: none; }
+.play-button.is-playing .icon-pause { display: block; }
+
+.player-status {
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+.progress {
+  width: 100%;
+  max-width: 260px;
+  height: 3px;
+  background: var(--bg-soft);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s linear;
+}
+
+.footer-note {
+  margin-top: 48px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
