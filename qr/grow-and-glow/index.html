@@ -21,6 +21,7 @@
     <circle cx="35" cy="24" r="4"/>
   </svg>
   <main class="card">
+    <div class="brand-mark">NewChapterBox</div>
     <div class="eyebrow">Grow &amp; Glow Box · Ритуална карта</div>
     <h1>Всяко цъфтене започва тихо.</h1>
     <p class="message">Това е личното послание, което подготвихме за теб. Настани се удобно и натисни play.</p>
@@ -38,7 +39,10 @@
       </div>
       <div id="ritual-status" class="player-status">Натисни, за да пуснеш</div>
       <div class="progress"><div id="ritual-progress-fill" class="progress-fill"></div></div>
+      <div id="ritual-time" class="player-time">0:00 / --:--</div>
     </div>
+
+    <p id="ritual-closing" class="closing-message">Ритуалът приключи. Продължи да растеш, ден след ден.</p>
 
     <audio id="ritual-audio" preload="none" src="../../audio/grow-and-glow.wav"></audio>
     <p class="footer-note">newchapterbox.com/qr/grow-and-glow</p>
