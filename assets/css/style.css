@@ -184,11 +184,11 @@ body[data-theme="boss-mode"] .accent-divider {
 }
 
 .brand-mark img {
-  height: 30px;
+  height: 52px;
   width: auto;
   display: block;
   margin: 0 auto;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .card .eyebrow {
