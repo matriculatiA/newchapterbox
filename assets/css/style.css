@@ -40,15 +40,60 @@ body[data-theme="grow-and-glow"] {
   --ring: rgba(217, 129, 79, 0.25);
 }
 
+/* ---------- Ambient background moods (slow, subtle — behind everything) ---------- */
+
+@keyframes breathe-reset {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes bloom-in {
+  0% { opacity: 0; transform: scale(0.7); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bloom-in-flip {
+  0% { opacity: 0; transform: scale(0.7) rotate(180deg); }
+  100% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+body[data-theme="reset"]::before {
+  background: radial-gradient(ellipse at 50% 38%, var(--bg-soft) 0%, transparent 65%);
+  animation: breathe-reset 6s ease-in-out infinite;
+}
+
+body[data-theme="boss-mode"]::before {
+  background:
+    radial-gradient(circle at 50% 44%, var(--accent) 0%, transparent 42%),
+    linear-gradient(135deg, var(--bg-soft) 0%, var(--bg) 60%);
+  opacity: 0.3;
+}
+
+body[data-theme="grow-and-glow"]::before {
+  background: radial-gradient(circle at 50% 46%, var(--accent) 0%, var(--bg) 55%);
+  opacity: 0.4;
+}
+
+/* ---------- Per-theme eyebrow feel ---------- */
+
+body[data-theme="reset"] .eyebrow { letter-spacing: 0.2em; }
+
+body[data-theme="boss-mode"] .eyebrow {
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  position: relative;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
@@ -59,11 +104,74 @@ body {
   transition: background 0.4s ease;
 }
 
+/* Ambient gradient layer, themed above. Sits behind the card, above the flat --bg. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .card {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 420px;
   text-align: center;
   padding: 48px 32px;
+}
+
+/* Decorative line-art / botanical motifs — purely visual, aria-hidden in markup */
+.decor {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  color: var(--accent);
+  fill: none;
+  stroke: currentColor;
+}
+
+body[data-theme="reset"] .decor-motif {
+  top: 6%;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  opacity: 0.07;
+  stroke-width: 1;
+}
+
+body[data-theme="grow-and-glow"] .decor-corner {
+  width: 110px;
+  height: 110px;
+  opacity: 0.12;
+  stroke-width: 1.4;
+  animation: bloom-in 1.4s ease-out both;
+}
+
+body[data-theme="grow-and-glow"] .decor-corner-tl {
+  top: 18px;
+  left: 18px;
+  animation-delay: 0.1s;
+}
+
+body[data-theme="grow-and-glow"] .decor-corner-br {
+  bottom: 18px;
+  right: 18px;
+  animation-name: bloom-in-flip;
+  animation-delay: 0.4s;
+}
+
+.accent-divider {
+  width: 48px;
+  height: 2px;
+  margin: 0 auto 20px;
+  background: var(--accent);
+  opacity: 0;
+}
+
+body[data-theme="boss-mode"] .accent-divider {
+  opacity: 1;
 }
 
 .card .eyebrow {
@@ -123,6 +231,71 @@ body {
 .play-button .icon-pause { display: none; }
 .play-button.is-playing .icon-play { display: none; }
 .play-button.is-playing .icon-pause { display: block; }
+
+/* --- Play orb wrapper: purely decorative rings/glow behind the button --- */
+.play-orb {
+  position: relative;
+  display: inline-flex;
+}
+
+.play-orb::before,
+.play-orb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Reset: slow concentric ripple, like an exhale */
+body[data-theme="reset"] .play-orb::before,
+body[data-theme="reset"] .play-orb::after {
+  border: 1px solid var(--accent);
+  opacity: 0;
+  animation: ripple-reset 4s ease-out infinite;
+}
+
+body[data-theme="reset"] .play-orb::after {
+  animation-delay: 2s;
+}
+
+@keyframes ripple-reset {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Boss Mode: constant confident gold pulse on the button itself */
+body[data-theme="boss-mode"] .play-button {
+  animation: pulse-boss 3.6s ease-in-out infinite;
+}
+
+@keyframes pulse-boss {
+  0%, 100% { box-shadow: 0 0 0 0 var(--ring), 0 0 18px 2px var(--ring); }
+  50% { box-shadow: 0 0 0 16px var(--ring), 0 0 34px 8px var(--ring); }
+}
+
+/* Grow & Glow: soft warm ambient glow behind the button, wider and gentler */
+body[data-theme="grow-and-glow"] .play-orb::before {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  filter: blur(16px);
+  opacity: 0.5;
+  animation: glow-grow 5s ease-in-out infinite;
+}
+
+body[data-theme="grow-and-glow"] .play-orb::after {
+  content: none;
+}
+
+@keyframes glow-grow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.1); }
+}
 
 .player-status {
   font-size: 13px;

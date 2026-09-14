@@ -8,20 +8,25 @@
 <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body data-theme="reset">
+  <svg class="decor decor-motif" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <path d="M62 10 A38 38 0 1 0 62 90 A30 30 0 1 1 62 10 Z"/>
+  </svg>
   <main class="card">
     <div class="eyebrow">Reset Box · Ритуална карта</div>
     <h1>Добре дошла в твоето ново начало.</h1>
     <p class="message">Това е личното послание, което подготвихме за теб. Намери тихо място, дай си пет минути и натисни play.</p>
 
     <div class="player">
-      <button id="ritual-play" class="play-button" aria-label="Пусни аудио съобщението"
-              data-status-idle="Натисни, за да пуснеш"
-              data-status-playing="Слуша се..."
-              data-status-paused="На пауза"
-              data-status-ended="Пусни отново">
-        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-      </button>
+      <div class="play-orb">
+        <button id="ritual-play" class="play-button" aria-label="Пусни аудио съобщението"
+                data-status-idle="Натисни, за да пуснеш"
+                data-status-playing="Слуша се..."
+                data-status-paused="На пауза"
+                data-status-ended="Пусни отново">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+      </div>
       <div id="ritual-status" class="player-status">Натисни, за да пуснеш</div>
       <div class="progress"><div id="ritual-progress-fill" class="progress-fill"></div></div>
     </div>

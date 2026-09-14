@@ -8,20 +8,34 @@
 <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body data-theme="grow-and-glow">
+  <svg class="decor decor-corner decor-corner-tl" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <path d="M10 90 C 10 60, 20 40, 35 25" stroke-linecap="round"/>
+    <path d="M20 55 C 28 50, 34 52, 38 60" stroke-linecap="round"/>
+    <path d="M15 72 C 24 69, 30 72, 33 80" stroke-linecap="round"/>
+    <circle cx="35" cy="24" r="4"/>
+  </svg>
+  <svg class="decor decor-corner decor-corner-br" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <path d="M10 90 C 10 60, 20 40, 35 25" stroke-linecap="round"/>
+    <path d="M20 55 C 28 50, 34 52, 38 60" stroke-linecap="round"/>
+    <path d="M15 72 C 24 69, 30 72, 33 80" stroke-linecap="round"/>
+    <circle cx="35" cy="24" r="4"/>
+  </svg>
   <main class="card">
     <div class="eyebrow">Grow &amp; Glow Box · Ритуална карта</div>
     <h1>Всяко цъфтене започва тихо.</h1>
     <p class="message">Това е личното послание, което подготвихме за теб. Настани се удобно и натисни play.</p>
 
     <div class="player">
-      <button id="ritual-play" class="play-button" aria-label="Пусни аудио съобщението"
-              data-status-idle="Натисни, за да пуснеш"
-              data-status-playing="Слуша се..."
-              data-status-paused="На пауза"
-              data-status-ended="Пусни отново">
-        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-      </button>
+      <div class="play-orb">
+        <button id="ritual-play" class="play-button" aria-label="Пусни аудио съобщението"
+                data-status-idle="Натисни, за да пуснеш"
+                data-status-playing="Слуша се..."
+                data-status-paused="На пауза"
+                data-status-ended="Пусни отново">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+      </div>
       <div id="ritual-status" class="player-status">Натисни, за да пуснеш</div>
       <div class="progress"><div id="ritual-progress-fill" class="progress-fill"></div></div>
     </div>
