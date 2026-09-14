@@ -9,19 +9,29 @@ menu, nothing to distract from the ritual.
 
 ```
 newchapterbox-site/
-├── index.html              ← local dev index only (links to the 3 pages). Do NOT deploy/link this publicly.
+├── index.html              ← public homepage (brand intro + the 3 boxes, no direct links into /qr/)
+├── blog/                   ← public, indexable articles (not tied to any single box's theme)
+│   ├── index.html
+│   └── <slug>/index.html   ← one folder per article
 ├── qr/
 │   ├── reset/index.html         → will live at newchapterbox.com/qr/reset
 │   ├── boss-mode/index.html     → will live at newchapterbox.com/qr/boss-mode
 │   └── grow-and-glow/index.html → will live at newchapterbox.com/qr/grow-and-glow
 ├── assets/
-│   ├── css/style.css       ← one shared stylesheet; each theme is a block of CSS variables
+│   ├── css/style.css       ← ritual pages stylesheet; each theme is a block of CSS variables
+│   ├── css/blog.css        ← shared site chrome (header/nav) + blog layout
+│   ├── css/home.css        ← homepage-only styles (hero, box cards)
+│   ├── img/logo.png / logo-white.png  ← New Chapter wordmark (black/white variants)
 │   └── js/player.js        ← shared play/pause logic, vanilla JS, no dependencies
 └── audio/
     ├── reset.wav
     ├── boss-mode.wav
     └── grow-and-glow.wav
 ```
+
+The `/qr/*` ritual pages are intentionally never linked from the homepage or
+blog — they're meant to be reached only by scanning the physical Ritual Card's
+QR code, so `noindex, nofollow` stays on all three.
 
 ## How to preview locally
 
